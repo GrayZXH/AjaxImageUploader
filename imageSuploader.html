@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>demo|AjaxImageUploader</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<div>
+		<form id="myForm" name="myForm" enctype="multipart/form-data">
+		  <div>
+		    <label for="userfile">Upload file:</label>
+		    <input type="file" multiple id="userfile" name="userfile[]">
+		  </div>
+		<button type="button" onclick="test()">提交</button>
+		</form>
+	</div>
+<script>
+	function test(){
+		var myForm = document.getElementById('myForm');
+		var	formData = new FormData(myForm);
+		$.ajax({
+	            url: "./uimage.php", 
+	            type: "post",
+	            dataType: "json",
+	            cache: false,
+	            data: formData,
+	            processData: false,// 不处理数据
+	            contentType: false, // 不设置内容类型
+	            success: function(data){
+	                console.log(data);//比较懒，没写echo内容，所以这个console看不了，直接看response吧
+	            }
+	        })
+	}
+</script>
+
+</body>
+</html>
